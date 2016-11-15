@@ -1,0 +1,31 @@
+div class="navbar navbar-default navbar-fixed-top"
+  div class="container"
+    div class="navbar-header"
+      =link_to 'My Crm', root_path, class: 'navbar-brand'
+      button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main"
+        span class="icon-bar"
+        span class="icon-bar"
+        span class="icon-bar"
+      
+    div class="navbar-collapse collapse" id="navbar-main"
+      ul class="nav navbar-nav"
+        li class="dropdown"
+          a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes" Компания <span class="caret"> </span>
+          ul class="dropdown-menu" aria-labelledby="themes"
+            li =link_to 'Пользователи',user_index_path
+            li class="divider"
+            li =link_to 'Отделы' ,groups_path
+
+        -unless current_user.group.blank?
+          li  =link_to 'Отдел', group_path(current_user.group)
+        -unless current_user.tascs.blank?
+          li  =link_to 'Задачи', user_tascs_path(current_user)      
+    
+      ul class="nav navbar-nav navbar-right"
+        -if current_user
+          li  = link_to 'Выход', destroy_user_session_path, method: :delete 
+        -else
+          li = link_to 'Регистрация', new_user_registration_path 
+          li = link_to 'Вход', new_user_session_path 
+        
+

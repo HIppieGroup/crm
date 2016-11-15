@@ -1,0 +1,44 @@
+.col-md-4
+	=@user.user_avatar
+	h1 = @user.user_title
+.col-md-8
+	
+
+	div class="panel panel-primary"
+	 	div class="panel-heading"
+			h3 class="panel-title" Должность в компании
+		div class="panel-body"
+			p Должность #{@user.user_position}
+			h5 отдел #{@user.user_group}
+			 
+
+	div class="panel panel-primary"
+		 	div class="panel-heading"
+				h3 class="panel-title" Контактная информация
+			div class="panel-body"
+				p тел: #{ @user.user_phone}
+				p почта: #{ @user.email} 
+
+	div class="panel panel-primary"
+		 	div class="panel-heading"
+				h3 class="panel-title" Личные данные
+			div class="panel-body"
+				p день рождения #{@user.user_birthday}
+				h4 Немного о себе
+				p = @user.user_about
+
+	=@user.edit_button(current_user)
+	
+-if @tasc.present? || current_user.admin == 1 || current_user.chef == @user.group_id && current_user.chef != 0
+	.col-md-12
+		h2 Последние задания
+		-@tasc.each do |t|
+			div class="panel panel-primary"
+				div class="panel-heading"
+					h3 class="panel-title" = t.task_name
+				div class="panel-body"
+					p =  t.text
+
+		
+		=@user.all_tasc_btn(current_user)
+		=@user.add_task_btn(current_user)

@@ -1,0 +1,11 @@
+-if params[:user_id]
+	= simple_form_for @tasc, url: user_tascs_path, html: {class: "simple-form"} do |f|
+		=f.input :task_name, 	label: 'Task'
+		=f.input :text,			label: 'Task text'
+		=f.button :submit, 'ok'
+-else
+	= simple_form_for @tasc, url: group_tascs_path, html: {class: "simple-form"} do |f|
+		=f.input :task_name, 	label: 'Task'
+		=f.input :text,			label: 'Task text'
+		=f.button :submit, 'ok'
+

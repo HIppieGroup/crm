@@ -1,0 +1,21 @@
+.col-md-12
+	h1 Все пользователи компании
+	table class="table"
+		tr
+			th Имя
+			th Должность
+			th Отдел
+			th Телефон
+			th 
+			th
+		-@users.each do |user|
+			tr
+				td =user.user_title
+				td =user.user_position
+
+				td =user.user_group
+
+				td =user.user_phone
+				td =user.profel_btn
+				td =user.del_user_btn(current_user)
+		end

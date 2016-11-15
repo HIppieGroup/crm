@@ -1,0 +1,17 @@
+.col-md-12
+	h1 Отделы компании
+	table class="table"
+		tr
+			th Название отдела
+			th Глава отдела
+			th 
+			th
+		-@group.each do |g|
+			tr
+				td =g.group_name
+				td =g.group_chef(g)			
+				td =g.more_btn
+				td =g.add_group_btn(current_user)
+
+	-if current_user.admin == 1
+		=link_to "Создать новый отдел", new_group_path, class: "btn btn-success"

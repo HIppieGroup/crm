@@ -1,0 +1,15 @@
+h1 Edit
+= simple_form_for @user, html: { class: "simple-form" } do |f|
+	=f.input :user_avatar, as: :file, 	label: 'avatar'
+	=f.input :name_user, 				label: 'you name'
+	-if current_user.admin == 1
+		=f.input :position_in_company, 		label: 'position'
+	-else
+		=@user.position_in_company if @user.position_in_company.present?
+	 
+	=f.input :phone_user, 				label: 'you phone'
+	=f.input :email,					label: 'email'
+	=f.input :birthday_user, 			label: 'birthday', as: :date, start_year: Date.today.year - 90,end_year: Date.today.year - 12, discard_day: false,order: [:month, :year, :day] 
+	=f.input :about_user, 				label: 'about you'
+	=f.button :submit, 'ok', class: 'btn btn-success'
+end
